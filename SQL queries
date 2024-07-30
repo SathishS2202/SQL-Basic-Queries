@@ -1,0 +1,94 @@
+-- Create a new database
+CREATE DATABASE company;
+
+-- Create a new table
+CREATE TABLE employees (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    department VARCHAR(50),
+    salary DECIMAL(10, 2)
+);
+
+-- Insert a single row into a table
+INSERT INTO employees (first_name, last_name, department, salary)
+VALUES ('John', 'Doe', 'Sales', 60000);
+
+-- Insert multiple rows into a table
+INSERT INTO employees (first_name, last_name, department, salary) VALUES
+('Jane', 'Smith', 'Marketing', 50000),
+('Mike', 'Johnson', 'IT', 70000);
+
+-- Update a single row in a table
+UPDATE employees
+SET salary = 65000
+WHERE first_name = 'John' AND last_name = 'Doe';
+
+-- Update multiple rows based on a condition
+UPDATE employees
+SET department = 'HR'
+WHERE department = 'Sales';
+
+-- Delete a single row from a table
+DELETE FROM employees
+WHERE first_name = 'John' AND last_name = 'Doe';
+
+-- Delete multiple rows based on a condition
+DELETE FROM employees
+WHERE department = 'Sales';
+
+
+-- Select all columns from a table
+SELECT * FROM employees;
+
+-- Select specific columns from a table
+SELECT first_name, last_name FROM employees;
+
+-- Select rows with a specific condition
+SELECT * FROM employees WHERE department = 'Sales';
+
+-- Select rows with multiple conditions
+SELECT * FROM employees WHERE department = 'Sales' AND salary > 50000;
+
+-- Inner join between two tables
+SELECT employees.first_name, employees.last_name, departments.department_name
+FROM employees
+INNER JOIN departments ON employees.department_id = departments.id;
+
+-- Left join between two tables
+SELECT employees.first_name, employees.last_name, departments.department_name
+FROM employees
+LEFT JOIN departments ON employees.department_id = departments.id;
+
+-- Count the number of rows in a table
+SELECT COUNT(*) FROM employees;
+
+-- Calculate the average salary
+SELECT AVG(salary) FROM employees;
+
+-- Group by department and count employees
+SELECT department, COUNT(*) AS employee_count
+FROM employees
+GROUP BY department;
+
+-- Add a new column to a table
+ALTER TABLE employees
+ADD COLUMN email VARCHAR(100);
+
+-- Drop a column from a table
+ALTER TABLE employees
+DROP COLUMN email;
+
+-- Modify the data type of a column
+ALTER TABLE employees
+MODIFY COLUMN salary INT;
+
+-- Rename a column
+ALTER TABLE employees
+RENAME COLUMN first_name TO fname;
+
+-- Rename the table
+ALTER TABLE employees
+RENAME TO staff;
+
+
